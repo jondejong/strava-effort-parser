@@ -3,11 +3,25 @@
  */
 package strava.effort.parser
 
+import strava.effort.parser.mapper.Mapper
+import strava.effort.parser.mapper.month.RelativeEffortMonthMapper
+import strava.effort.parser.mapper.week.RelativeEffortWeekMapper
+
 class App {
+    /**
+     * To create new functionality, create a custom Mapper
+     * by extending strava.effort.parser.mapper.Mapper and adding
+     * an instance of the custom mapper here.
+     */
+    private val mappers = arrayOf<Mapper>(
+        RelativeEffortWeekMapper(),
+        RelativeEffortMonthMapper()
+    )
+
     private val startDate = "2015-06-29"
     private val aggregator: Aggregator = Aggregator()
     fun run() {
-        aggregator.aggregate(startDate)
+        aggregator.aggregate(mappers, startDate)
     }
 }
 
