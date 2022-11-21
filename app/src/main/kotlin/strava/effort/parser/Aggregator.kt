@@ -1,29 +1,17 @@
 package strava.effort.parser
 
 import strava.effort.parser.mapper.Mapper
-import strava.effort.parser.mapper.month.RelativeEffortMonthMapper
-import strava.effort.parser.mapper.week.RelativeEffortWeekMapper
 import java.io.File
 import java.nio.file.Paths
 import java.time.LocalDate
 
 class Aggregator {
 
-    /**
-     * To create new functionality, create a custom Mapper
-     * by extending strava.effort.parser.mapper.Mapper and adding
-     * an instance of the custom mapper here.
-     */
-    private val mappers = arrayOf<Mapper>(
-        RelativeEffortWeekMapper(),
-        RelativeEffortMonthMapper()
-    )
-
     private val dataDirectoryName = "data"
     private val dataFileSuffix = "csv"
     private val activityDataFile = "activities"
 
-    fun aggregate(startDate: String) {
+    fun aggregate(mappers: Array<Mapper>, startDate: String) {
         val dataDirectory = "${Paths.get("").toAbsolutePath().parent}/$dataDirectoryName"
         val data = "${dataDirectory}/${activityDataFile}.${dataFileSuffix}"
 
@@ -36,7 +24,7 @@ class Aggregator {
                     headerBuffer.append("$headerToken,")
                 }
                 out.println(headerBuffer.toString())
-                
+
                 data.data.forEach { dataLine ->
                     val lineBuffer = StringBuffer()
                     for (dataToken in dataLine) {
