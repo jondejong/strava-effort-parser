@@ -18,10 +18,9 @@ class App {
         RelativeEffortMonthMapper()
     )
 
-    private val startDate = "2015-06-29"
     private val aggregator: Aggregator = Aggregator()
     fun run() {
-        aggregator.aggregate(mappers, startDate)
+        aggregator.aggregate(mappers)
     }
 }
 
