@@ -19,10 +19,11 @@ class Aggregator {
         val activities = CSVParser(File(data)).parse()
 
         val startDate = activities.fold(toMonday(LocalDate.now()), fun(min, activity): LocalDate {
-            if (activity.time < min.atStartOfDay()) {
-                return toMonday(activity.time.toLocalDate())
+            return if (activity.time < min.atStartOfDay()) {
+                toMonday(activity.time.toLocalDate())
+            } else {
+                min
             }
-            return min
         })
 
         mappers.forEach {
