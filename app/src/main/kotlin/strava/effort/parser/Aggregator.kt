@@ -27,15 +27,19 @@ class Aggregator {
         val activities = CSVParser(File(data)).parse()
         mappers.forEach {
             val data = it.run(activities, LocalDate.parse("2015-06-29"))
-        File("${dataDirectory}/${data.outputFileName}.${dataFileSuffix}").printWriter().use { out ->
-            val headerBuffer = StringBuffer()
-            for(headerToken in data.headers) {headerBuffer.append("$headerToken,")}
-            data.data.forEach { dataLine ->
-                val lineBuffer = StringBuffer()
-                for(dataToken in dataLine) { lineBuffer.append("$dataToken,") }
-                out.println(lineBuffer.toString())
+            File("${dataDirectory}/${data.outputFileName}.${dataFileSuffix}").printWriter().use { out ->
+                val headerBuffer = StringBuffer()
+                for (headerToken in data.headers) {
+                    headerBuffer.append("$headerToken,")
+                }
+                data.data.forEach { dataLine ->
+                    val lineBuffer = StringBuffer()
+                    for (dataToken in dataLine) {
+                        lineBuffer.append("$dataToken,")
+                    }
+                    out.println(lineBuffer.toString())
+                }
             }
-        }
         }
     }
 }

@@ -9,7 +9,7 @@ class RelativeEffortWeekMapper : Mapper(
     outputFileName = "relativeEffortByWeek"
 ) {
 
-    override fun map(activities: List<Activity>, startDate: LocalDate) : Collection<List<String>> {
+    override fun map(activities: List<Activity>, startDate: LocalDate): Collection<List<String>> {
         var done = false
         val now = LocalDate.now()
         val weeks = ArrayList<WeekAggregate>()
@@ -35,7 +35,7 @@ class RelativeEffortWeekMapper : Mapper(
         }
 
         return weeks.map {
-             listOf("${it.start.toString()},${it.end.toString()},${it.effort}")
+            listOf("${it.start.toString()},${it.end.toString()},${it.effort}")
         }
     }
 }
