@@ -6,7 +6,6 @@ import java.time.LocalDate
 import java.time.Month
 import java.time.format.TextStyle
 import java.util.*
-import kotlin.collections.ArrayList
 
 class RelativeEffortMonthMapper : Mapper(
     headerValues = listOf("Month", "Year", "Effort"),
@@ -48,7 +47,7 @@ class RelativeEffortMonthMapper : Mapper(
         }
 
         return months.map {
-            listOf("${it.month.getDisplayName(TextStyle.FULL, Locale.ENGLISH)},${it.year.toString()},${it.effort}")
+            listOf("${it.month.getDisplayName(TextStyle.FULL, Locale.ENGLISH)},${it.year},${it.effort}")
         }
     }
 }

@@ -9,20 +9,19 @@ import java.time.LocalDate
 
 class Aggregator {
 
+    /**
+     * To create new functionality, create a custom Mapper
+     * by extending strava.effort.parser.mapper.Mapper and adding
+     * an instance of the custom mapper here.
+     */
+    private val mappers = arrayOf<Mapper>(
+        RelativeEffortWeekMapper(),
+        RelativeEffortMonthMapper()
+    )
+
     private val dataDirectoryName = "data"
     private val dataFileSuffix = "csv"
     private val activityDataFile = "activities"
-    private val mappers = ArrayList<Mapper>()
-
-    init {
-        // Add any custom mappers to this
-        mappers.add(
-            RelativeEffortWeekMapper()
-        )
-        mappers.add(
-            RelativeEffortMonthMapper()
-        )
-    }
 
     fun aggregate(startDate: String) {
         val dataDirectory = "${Paths.get("").toAbsolutePath().parent}/$dataDirectoryName"

@@ -35,7 +35,7 @@ class RelativeEffortWeekMapper : Mapper(
         }
 
         return weeks.map {
-            listOf("${it.start.toString()},${it.end.toString()},${it.effort}")
+            listOf("${it.start},${it.end},${it.effort}")
         }
     }
 }
