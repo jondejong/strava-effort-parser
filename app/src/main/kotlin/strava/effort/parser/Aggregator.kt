@@ -35,6 +35,8 @@ class Aggregator {
                 for (headerToken in data.headers) {
                     headerBuffer.append("$headerToken,")
                 }
+                out.println(headerBuffer.toString())
+                
                 data.data.forEach { dataLine ->
                     val lineBuffer = StringBuffer()
                     for (dataToken in dataLine) {
