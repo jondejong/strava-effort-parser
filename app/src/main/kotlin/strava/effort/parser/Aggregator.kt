@@ -3,6 +3,7 @@ package strava.effort.parser
 import strava.effort.parser.mapper.Mapper
 import java.io.File
 import java.nio.file.Paths
+import java.time.DayOfWeek
 import java.time.LocalDate
 
 class Aggregator {
@@ -11,13 +12,21 @@ class Aggregator {
     private val dataFileSuffix = "csv"
     private val activityDataFile = "activities"
 
-    fun aggregate(mappers: Array<Mapper>, startDate: String) {
+    fun aggregate(mappers: Array<Mapper>) {
         val dataDirectory = "${Paths.get("").toAbsolutePath().parent}/$dataDirectoryName"
         val data = "${dataDirectory}/${activityDataFile}.${dataFileSuffix}"
 
         val activities = CSVParser(File(data)).parse()
+
+        val startDate = activities.fold(toMonday(LocalDate.now()), fun(min, activity): LocalDate {
+            if (activity.time < min.atStartOfDay()) {
+                return toMonday(activity.time.toLocalDate())
+            }
+            return min
+        })
+
         mappers.forEach {
-            val data = it.run(activities, LocalDate.parse("2015-06-29"))
+            val data = it.run(activities, startDate)
             File("${dataDirectory}/${data.outputFileName}.${dataFileSuffix}").printWriter().use { out ->
                 val headerBuffer = StringBuffer()
                 for (headerToken in data.headers) {
@@ -34,5 +43,15 @@ class Aggregator {
                 }
             }
         }
+    }
+
+    private fun toMonday(from: LocalDate): LocalDate {
+        var checkDate = from
+        do {
+            if (checkDate.dayOfWeek.equals(DayOfWeek.MONDAY)) {
+                return checkDate
+            }
+            checkDate = checkDate.minusDays(1)
+        } while (true)
     }
 }
