@@ -9,4 +9,4 @@ build
 
 # Ignore personal data
 activities.csv
-weeks.csv
+*.csv
