@@ -28,7 +28,8 @@ class CSVParser(private val file: File) {
                     type = type,
                     name = it[2],
                     description = it[4],
-                    effort = if (it[8].isEmpty()) 0 else Integer.parseInt(it[8])
+                    effort = if (it[8].isEmpty()) 0 else Integer.parseInt(it[8]),
+                    distance = if (it[6].isEmpty()) 0.0f else it[6].toFloat(),
                 )
             }
     }

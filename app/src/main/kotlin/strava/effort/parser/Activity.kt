@@ -8,5 +8,6 @@ data class Activity(
     val type: ActivityType,
     val name: String,
     val description: String,
-    val effort: Int = 0
+    val effort: Int = 0,
+    val distance: Float = 0.0f
 )
