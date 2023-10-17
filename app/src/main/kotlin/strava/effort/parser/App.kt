@@ -5,8 +5,8 @@ package strava.effort.parser
 
 import strava.effort.parser.mapper.Mapper
 import strava.effort.parser.mapper.activity.biking.BikingTotalMonthMapper
-import strava.effort.parser.mapper.month.RelativeEffortMonthMapper
 import strava.effort.parser.mapper.activity.running.month.RunningTotalMonthMapper
+import strava.effort.parser.mapper.month.RelativeEffortMonthMapper
 import strava.effort.parser.mapper.week.RelativeEffortWeekMapper
 
 class App {

@@ -8,7 +8,7 @@ import java.time.Month
 import java.time.format.TextStyle
 import java.util.*
 
-abstract class MonthAggregator : Mapper{
+abstract class MonthAggregator : Mapper {
 
     private var activityType: ActivityType
 
