@@ -10,3 +10,8 @@ build
 # Ignore personal data
 activities.csv
 *.csv
+export_*
+
+# System files
+.DS_Store
+```
