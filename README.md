@@ -1,7 +1,7 @@
 # Strava Effort Parser
 This app, as it stands, will take the 
-spreadsheet you can get from Strava, and create two more that aggregate the relative effort scores by
-week and by month. However, this is designed to be easily extensible to allow you to create a custom map
+spreadsheet you can get from Strava, and create new CSV files that map aggregates of the data by activity 
+and by week and month. However, this is designed to be easily extensible to allow you to create a custom map
 function to parse your own activities however you like.
 
 ### Getting your activities from Strava
