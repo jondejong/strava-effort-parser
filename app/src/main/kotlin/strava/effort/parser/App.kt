@@ -5,7 +5,9 @@ package strava.effort.parser
 
 import strava.effort.parser.mapper.Mapper
 import strava.effort.parser.mapper.activity.biking.BikingTotalMonthMapper
-import strava.effort.parser.mapper.activity.running.month.RunningTotalMonthMapper
+import strava.effort.parser.mapper.activity.biking.BikingTotalWeekMapper
+import strava.effort.parser.mapper.activity.running.RunningTotalMonthMapper
+import strava.effort.parser.mapper.activity.running.RunningTotalWeekMapper
 import strava.effort.parser.mapper.month.RelativeEffortMonthMapper
 import strava.effort.parser.mapper.week.RelativeEffortWeekMapper
 
@@ -19,7 +21,10 @@ class App {
         RelativeEffortWeekMapper(),
         RelativeEffortMonthMapper(),
         RunningTotalMonthMapper(),
-        BikingTotalMonthMapper()
+        RunningTotalWeekMapper(),
+        BikingTotalMonthMapper(),
+        BikingTotalWeekMapper(),
+        BikingTotalWeekMapper()
     )
 
     private val aggregator: Aggregator = Aggregator()
